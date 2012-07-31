@@ -2,29 +2,28 @@
 \alias{OptDim}
 \alias{OptDim.default}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{
-  Estimation of the Factor Dimension
-}
-\description{
-  Functions for the Estimation of the Factor Dimension
-}
+\title{Estimation of the Factor Dimension}
+\description{Functions for the Estimation of the Factor Dimension}
 \usage{
 OptDim(Obj, 
-       criteria = c("PC1", "PC2", "PC3",
+       criteria = c("PC1", "PC2", "PC3", "BIC3",
                      "IC1", "IC2", "IC3",
                      "IPC1","IPC2", "IPC3",
+                     "ABC.IC1", "ABC.IC2",
                      "KSS.C",
                      "ED",  "ER",  "GR"),
        standardize = FALSE,
        d.max,
        sig2.hat,
        spar,
-       level = 0.01)
+       level = 0.01, 
+       c.grid = seq(0, 5, length.out = 128),
+       T.seq, n.seq)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{Obj}{The function requires either a Txn matrix or an object with class "`Eup"' or "`KSS"'.}
-  \item{criteria}{A character vector that contains the desired criteria to be used. If it is left unspecified, the function returns the result of all 13 criteria. }
+  \item{criteria}{A character vector that contains the desired criteria to be used. If it is left unspecified, the function returns the result of all 16 criteria. }
   \item{standardize}{logical. If \code{TRUE} the input variable will be standardized. Default is \code{FALSE}.}
   \item{d.max}{Maximal dimension used in the dimensionality-criteria of Bai
     (2009). The default (\code{d.max=NULL}) yields to an internal selection of
@@ -32,12 +31,14 @@ OptDim(Obj,
   \item{sig2.hat}{The squared standard deviation of the error-term required for the computation of some dimensionality criteria. The user can specify it in instead of \code{d.max}. The default (\code{sig2.hat=NULL}) yields to an internal estimation.}
   \item{spar}{Smoothing parameter used to calculate the criterion of Kneip, Sickles, and Song (2012). The default is \code{NULL}, which leads to internal computation.}
   \item{level}{The significance level used for the criterion of Kneip, Sickles, and Song (2012). The default is 0.01.}
+  \item{c.grid}{Required only for computing \code{"ABC.IC1"} and \code{"ABC.IC2"}. It specifies the grid interval in which the scaling parameter of the penalty terms in \code{"ABC.IC1"} and \code{"ABC.IC2"} are calibrated. Default is \code{c.grid  =seq(0, 5, length.out = 128)}.}
+  \item{T.seq}{Required only for computing \code{"ABC.IC1"} and \code{"ABC.IC2"}. It can be a vector containing different dimensions for T or an integer indicating the length of the sequence to be considered in calibrating  \code{"ABC.IC1"} and \code{"ABC.IC2"}. If it is left unspecified, the function determines internally a sequence of the form \code{seq((T-C), T)}, where \code{C} is the square root of \code{min{T,900}}. }
+  \item{n.seq}{Required only for computing \code{"ABC.IC1"} and \code{"ABC.IC2"}. It can be a vector containing different dimensions for n or an integer indicating the length of the sequence to be considered in calibrating  \code{"ABC.IC1"} and \code{"ABC.IC2"}. If it is left unspecified, the function determines internally a sequence of the form \code{seq((n-D), n)}, where \code{D} is the square root of \code{min{n,900}}.}
 }
 \details{The function 'OptDim' allows for a comparison of the optimal factor dimensions obtained from different panel criteria (in total 13). This criteria are adjusted for panel data with diverging T and N.}
 \value{
 'OptDim' returns an object of 'class' '"OptDim"' containing a list with the
       following components:
-      
 \item{criteria:}{The name of the criteria specified by the user.}
 \item{PC1:}{If specified in \code{criteria} a table is returned with the optimal dimension, the empirical standard deviation of the residuals, and some other informations required internally by the criterion, such as \code{d.max} and/ or \code{sig2.hat}.}
 \item{PC2:}{If specified in \code{criteria} a table is returned with the optimal dimension, the empirical standard deviation of the residuals, and some other informations required internally by the criterion, such as \code{d.max} and/ or \code{sig2.hat}.}
@@ -60,7 +61,6 @@ OptDim(Obj,
 \item{RHC:}{A logical vector required for further internal computations.}
 \item{obj:}{The argument '\code{Obj}' given to the function \code{OptDim()}.}
 \item{cl:}{Object of mode "call".}
-
 }
 \references{
   \itemize{

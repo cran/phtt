@@ -2,12 +2,8 @@
 \alias{KSS}
 \alias{KSS.default}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{
-KSS-Routine
-}
-\description{
-Estimation of Panel Data Models with Heterogeneous Time Trends
-}
+\title{KSS-Routine}
+\description{Estimation of Panel Data Models with Heterogeneous Time Trends}
 \usage{
 KSS(formula,
     additive.effects = c("none", "individual", "time", "twoways"),
@@ -138,7 +134,8 @@ KSS(formula,
               Y_{it}=\mu+\theta_{t}+\sum_{j=1}^P\beta_{j}
 	      X_{itj}+\alpha_i+v_i(t)+\epsilon_{it}, i=1,...,n; t=1,...,T.}
 	    The parameter 'mu' is set to zero if '-1' is used in \code{formula}.
-	  }}}}
+      }}}
+    }
     \value{
       'KSS' returns an object of 'class' '"KSS"'.
 
@@ -183,9 +180,7 @@ KSS(formula,
 % \note{
 % %%  ~~further notes~~
 % }
-
 % %% ~Make other sections like Warning with \section{Warning }{....} ~
-
 \seealso{
 Eup
 }

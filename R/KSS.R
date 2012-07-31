@@ -127,16 +127,24 @@ KSS.default <- function(formula,
     fpca.fit.obj     <- fpca.fit(Residu.mat, spar=spar.low)
 
     ## Estimation of Dimension
-    dim.criterion    <- c("PC1",  "PC2",  "PC3",   "IC1",   "IC2", "IC3",
-                          "IPC1", "IPC2", "IPC3" , "KSS.C", "ED",  "ER", "GR")
+    dim.criterion    <- c("PC1", "PC2", "PC3", "BIC3","IC1", "IC2", "IC3",
+                          "IPC1","IPC2", "IPC3",
+                          "ABC.IC1", "ABC.IC2", 
+                          "KSS.C",
+                          "ED",
+                          "ER", "GR")
     Opt.dim.Output   <- as.matrix(sapply(dim.criterion, function(dim.criterion){
       EstDim(dim.criterion, Obj=Residu.mat, d.max=d.max, factor.dim=factor.dim,
              sig2.hat=sig2.hat, level=level)[2]}))
 
     ## User-Interface--------------------------------------------------------------------------- 
-    Opt.dim.Output.Bai            <- c(as.numeric(Opt.dim.Output[1:9,1]))
-    names(Opt.dim.Output.Bai)     <- c("PC1","PC2","PC3","IC1","IC2","IC3","IPC3","IPC2","IPC3")
-    Opt.dim.Output.KSS            <- c(as.numeric(Opt.dim.Output[10,1]))
+    Opt.dim.Output.BaiNg          <- c(as.numeric(Opt.dim.Output[1:7,1]))
+    names(Opt.dim.Output.BaiNg)   <- c("PC1","PC2","PC3","BIC3","IC1","IC2","IC3")
+    Opt.dim.Output.Bai            <- c(as.numeric(Opt.dim.Output[8:10,1]))
+    names(Opt.dim.Output.Bai)     <- c("IPC1","IPC2","IPC3")
+    Opt.dim.Output.Alessi         <- c(as.numeric(Opt.dim.Output[11:12,1]))
+    names(Opt.dim.Output.Alessi)  <- c("ABC.IC1", "ABC.IC2")
+    Opt.dim.Output.KSS            <- c(as.numeric(Opt.dim.Output[13,1]))
     names(Opt.dim.Output.KSS)     <- c(" KSS.C")
     Opt.dim.Output.Onatski        <- c(as.numeric(Opt.dim.Output[11,1]))
     names(Opt.dim.Output.Onatski) <- c(" ED")
@@ -144,12 +152,14 @@ KSS.default <- function(formula,
     names(Opt.dim.Output.RH)      <- c(" ER","GR")
     if(is.null(factor.dim) && consult.dim.crit){
       cat("-----------------------------------------------------------\n")
-      cat("Results of Dimension-Estimations");cat("\n\n-Bai:\n")
-      print(Opt.dim.Output.Bai, quote = FALSE, na.print="");    cat("\n-KSS:\n")
-      print(Opt.dim.Output.KSS, quote = FALSE, na.print="");    cat("\n-Onatski:\n")
-      print(Opt.dim.Output.Onatski, quote = FALSE, na.print="");cat("\n-RH:\n")
-      print(Opt.dim.Output.RH, quote = FALSE, na.print="");
-      otp <- as.numeric(c(Opt.dim.Output.Bai,Opt.dim.Output.KSS,Opt.dim.Output.Onatski,Opt.dim.Output.RH))
+      cat("Results of Dimension-Estimations");
+      cat("\n\n-Bai and Ng (2002):\n");       print(Opt.dim.Output.BaiNg, quote = FALSE, na.print="");
+      cat("\n\n-Bai (2004):\n");              print(Opt.dim.Output.Bai, quote = FALSE, na.print="");
+      cat("\n\n-Alessi et al. (2010):\n");    print(Opt.dim.Output.Alessi, quote = FALSE, na.print="");
+      cat("\n-Kneip et al. (2012):\n");       print(Opt.dim.Output.KSS, quote = FALSE, na.print="");
+      cat("\n-Onatski (2009):\n");            print(Opt.dim.Output.Onatski, quote = FALSE, na.print="");
+      cat("\n-Ahn and Horenstein (2013):\n"); print(Opt.dim.Output.RH, quote = FALSE, na.print="");
+      otp <- as.numeric(c(Opt.dim.Output.BaiNg,Opt.dim.Output.KSS,Opt.dim.Output.Onatski,Opt.dim.Output.RH))
       cat("\n")
       cat("-----------------------------------------------------------\n")
       ## Auxiliary Fct's
@@ -183,7 +193,7 @@ KSS.default <- function(formula,
         used.dim <- factor.dim
       }
     if(is.null(factor.dim) && !consult.dim.crit){
-      used.dim <- c(as.numeric(Opt.dim.Output[10,1]))
+      used.dim <- c(as.numeric(Opt.dim.Output[13,1]))# KSS.C
     }
     ## now: 'used.dim' is specified 
     if(used.dim > 0){

@@ -84,7 +84,6 @@ checkSpecif(obj1, obj2, level = 0.05)
 % \note{
 % %%  ~~further notes~~
 % }
-
 % %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
@@ -156,8 +155,7 @@ KSS.obj <- KSS(l.Consumption ~ -1 + l.Price + l.Income,
 	   additive.effects = "twoways")
 
 ## Test:
-checkSpecif(KSS.obj, level = 0.01)
-}
+checkSpecif(KSS.obj, level = 0.01)}
 % % Add one or more standard keywords, see file 'KEYWORDS' in the
 % % R documentation directory.
 % \keyword{ ~kwd1 }

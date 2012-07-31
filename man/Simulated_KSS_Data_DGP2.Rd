@@ -1,7 +1,6 @@
 \name{Simulated Data for the KSS-Model: DGP2}
 \docType{data}
 \alias{DGP2}
-
 \title{Simulated Panel-Data Set with Polynomial Factor Structure and \emph{endogenous} regressors.}
 \description{
   A Panel-Data Sets with:

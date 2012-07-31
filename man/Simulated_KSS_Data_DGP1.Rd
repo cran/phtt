@@ -1,7 +1,6 @@
 \name{Simulated Data for the KSS-Model: DGP1}
 \docType{data}
 \alias{DGP1}
-
 \title{Simulated Panel-Data Set with Polynomial Factor Structure and \emph{exogenous} regressors.}
 \description{
   A Panel-Data Sets with:
@@ -32,7 +31,6 @@ data(DGP1)
     \eqn{$Y_{11},Y_{12},\ldots,Y_{1T},Y_{21},Y_{22},\ldots$}{Y_{11},Y_{12},\ldots,Y_{1T},Y_{21},Y_{22},\ldots}}
   }
 }
-
 \details{
   The panel-data set DPG1 is simulated according to the simulation-study
   in Kneip, Sickles & Song (2012):
