@@ -1,0 +1,28 @@
+export(KSS)
+export(Eup)
+export(OptDim)
+export(checkSpecif)
+
+import(pspline)
+
+## Register S3-methods
+S3method(print,     checkSpecif)
+
+S3method(OptDim,    default)
+S3method(print,     OptDim)
+S3method(plot,      OptDim)
+S3method(summary,   OptDim)
+
+S3method(KSS,       default)
+S3method(print,     KSS)
+S3method(coef,      KSS)
+S3method(summary,   KSS)
+S3method(print,     summary.KSS)
+S3method(plot,      summary.KSS)
+
+S3method(Eup,       default)
+S3method(print,     Eup)
+S3method(coef,      Eup)
+S3method(summary,   Eup)
+S3method(print,     summary.Eup)
+S3method(plot,      summary.Eup)
