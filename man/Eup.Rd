@@ -166,8 +166,7 @@ choosing the corresponding number for the argument \code{error.type = c(1, 2, 3,
   \itemize{
     \item Bai, J., 2009 \dQuote{Panel data models with interactive fixed
       effects}, \emph{Econometrica}
-    \item Bada, O. and Kneip, A., 2012  \dQuote{Panel Data Models with Unobserved Multiple
-Time-Varying Effects to Estimate Risk Premium of Corporate Bonds}, \emph{Working paper}, \emph{University of Bonn}
+    \item Bada, O. and Kneip, A., 2014  \dQuote{Parameter Cascading for Panel Models with Unknown Number of Unobserved Factors: An Application to the Credit Spread Puzzle}, \emph{Computational Statistics \& Data Analysis (forthcoming)}
 }}
 \author{
   Oualid Bada

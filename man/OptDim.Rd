@@ -64,7 +64,7 @@ OptDim(Obj,
 }
 \references{
   \itemize{
-      \item  Ahn, S. C., Horenstein, A. R. 2009 \dQuote{Eigenvalue ratio test for the number of factors}, \emph{Working Paper}
+      \item Ahn, S. C., Horenstein, A. R. 2013 \dQuote{Eigenvalue ratio test for the number of factors}, \emph{Econometrica}
     \item Bai, J., 2009 \dQuote{Panel data models with interactive fixed
       effects}, \emph{Econometrica}
     \item Bai, J. 2004 \dQuote{Estimating cross-section common stochastic trends in nonstationary data},  \emph{Journal of Econometrics}
