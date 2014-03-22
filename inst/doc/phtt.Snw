@@ -1,6 +1,7 @@
 %\VignetteIndexEntry{Introduction to the phtt Package.}
 
-\documentclass[nojss]{jss}  %\documentclass{jss}
+\documentclass[nojss]{jss}
+%% \documentclass{jss}
 \usepackage{amsmath}
 \usepackage{amssymb}  
  
@@ -10,7 +11,7 @@
 
 %% almost as usual  
 \author{Oualid Bada\\University of Bonn \And 
-        Dominik Liebl\\Universities of Cologne and Bonn}
+        Dominik Liebl\\Universit\'e libre de Bruxelles}
 \title{The \proglang{R}-package \pkg{phtt}: Panel Data Analysis with Heterogeneous Time Trends}
 
 %% for pretty printing and a nice hypersummary also set: 
@@ -20,11 +21,11 @@
  
 %% an abstract and keywords 
 \Abstract{
-  A slightly modified version of this introduction to the \pkg{phtt} package is submitted to the Journal of Statistical Software.
+    A slightly modified version of this introduction to the \pkg{phtt} package is published in the Journal of Statistical Software \citep{JSSBadaLiebl}.\\[2ex]
   
   The \proglang{R}-package \pkg{phtt} provides estimation procedures for panel data with large dimensions $n$, $T$, and general forms of unobservable heterogeneous effects. Particularly, the estimation procedures are those of \Citet{Bai2009a} and \Citet{Kneip2009}, which complement one another very well: both models assume the unobservable heterogeneous effects to have a factor structure. \Citet{Kneip2009} considers the case in which the time varying common factors have relatively smooth patterns including strongly positive auto-correlated stationary as well as non-stationary factors, whereas the method of \Citet{Bai2009a} focuses on stochastic bounded factors such as ARMA processes. 
 %The method of \Citet{Bai2009a} assumes that the factors are stationary, whereas the method of \Citet{Kneip2009} allows the factors to be non-stationary. 
-Additionally, the \pkg{phtt} package provides a wide range of dimensionality criteria in order to estimate the number of the unobserved factors simultaneously with the remaining model parameters.
+Additionally, the \pkg{phtt} package provides a wide range of dimensionality criteria in order to estimate the number of the unobserved factors simultaneously with the remaining model parameters.  %(A slightly different version of this vignette is forthcoming at the Journal of Statistical Software)
 }
 \Keywords{Panel data, unobserved heterogeneity, principal component analysis, factor dimension}
 \Plainkeywords{Panel data, unobserved heterogeneity, principal component analysis, factor dimension, interactive fixed effects} %% without formatting
@@ -42,15 +43,16 @@ Additionally, the \pkg{phtt} package provides a wide range of dimensionality cri
 %% The address of (at least) one author should be given
 %% in the following format:
 \Address{
-  Oualid Bada and Dominik Liebl\\
+  Oualid Bada\\
   Statistische Abteilung\\
   University of Bonn\\
   Adenauerallee 24-26\\
   53113 Bonn, Germany\\
   E-mail: \email{bada@uni-bonn.de}\\
-  E-mail: \email{dliebl@uni-bonn.de}\\
+  %E-mail: \email{dliebl@uni-bonn.de}\\
 %  URL: \url{http://statmath.wu-wien.ac.at/~zeileis/}
 }
+
 %% It is also possible to add a telephone and fax number
 %% before the e-mail in the following format:
 %% Telephone: +43/1/31336-5053
@@ -100,7 +102,7 @@ An intrinsic problem of factor models lies in the fact that the true factors are
 \begin{tabular}{cll}
 (a)& $\frac{1}{T}\sum_{t=1}^T f_{lt}^2 = 1$      & for all $l\in\{1,\ldots,d\}$,\\[1ex]
 (b)& $\sum_{t=1}^Tf_{lt}f_{kt} = 0$              & for all $l, k\in\{1, \ldots, d\}$ with $k\neq l$, and\\[1ex]
-(c)& $\sum_{i=1}^N\lambda_{il}\lambda_{ik} = 0$  & for all $l, k\in\{1, \ldots, d\}$ with $k\neq l$;
+(c)& $\sum_{i=1}^n\lambda_{il}\lambda_{ik} = 0$  & for all $l, k\in\{1, \ldots, d\}$ with $k\neq l$;
 \end{tabular}
 \end{center}
 see, e.g., \Citet{Bai2009a} and \Citet{Kneip2009}. For the model of \Citet{Kneip2009}, $f_{lt}$ in conditions (a) and (b) has to be replaced by $f_{l}(t)$. As usual in factor models, a certain degree of indeterminacy remains, because the factors can only be determined up to sign changes and different ordering schemes. 
@@ -146,11 +148,9 @@ The \code{Cigar} dataset can be obtained from the \pkg{phtt} package using the f
 
 <<echo=FALSE>>=
 ## Install package
-## install.packages("phtt", repos="http://R-Forge.R-project.org")
+## install.packages("phtt")
 ## Load package
 library("phtt")
-## vignette()
-## vignette("phtt_Guide")
 ## Load Data
 data("Cigar")
 N <- 46
@@ -212,15 +212,15 @@ over all $\beta_j\in\mathbb{R}$ and all $m$-times continuously differentiable fu
 \begin{equation}\label{kssmin2}
 S(\beta, \zeta) = \sum_{i=1}^n \left(||Y_i - X_i\beta - Z\zeta_i||^2 + \kappa \zeta_i^{\top}R\zeta_i\right),
 \end{equation}
-where $Y_i = (y_{i1}, \ldots, y_{iT})^\top$, $X_i = (x_{i1}^\top, \ldots, x_{iT}^\top)^\top$, $\beta=(\beta_1,\dots,\beta_p)^\top$, $\zeta_i=(\zeta_{i1},\dots,\zeta_{iT})^\top$, $Z$ and $R$ are $T \times T$ matrices with elements $\{z_s(t)\}_{s,t = 1, \ldots, T}$ and $\{ \int z^{(m)}_s(t)z^{(m)}_k(t) dt \}_{s,k = 1, \ldots, T}$ respectively. $\kappa$ is a preselected smoothing parameter to control the smoothness of $\hat{\vartheta}_i(t)$. We follow the usual choice of $m = 2$, which leads to cubic smoothing splines. 
+where $Y_i = (y_{i1}, \ldots, y_{iT})^\top$, $X_i = (x_{i1}^\top, \ldots, x_{iT}^\top)^\top$, $\beta=(\beta_1,\dots,\beta_P)^\top$, $\zeta_i=(\zeta_{i1},\dots,\zeta_{iT})^\top$, $Z$ and $R$ are $T \times T$ matrices with elements $\{z_s(t)\}_{s,t = 1, \ldots, T}$ and $\{ \int z^{(m)}_s(t)z^{(m)}_k(t) dt \}_{s,k = 1, \ldots, T}$ respectively. $\kappa$ is a preselected smoothing parameter to control the smoothness of $\hat{\vartheta}_i(t)$. We follow the usual choice of $m = 2$, which leads to cubic smoothing splines. 
 
 In contrast to \Citet{Kneip2009}, we do not specify a common time effect in model \eqref{kss}, but the vector of explanatory variables is allowed to contain an intercept. This means that the time-varying individual effects $v_i(t)$ are not centered around zero for each specific time point $t$, but around a common intercept term. The separate estimation of the common time effect, say $\theta_t$, is also possible with our \pkg{phtt} package; we discuss this in detail in Section \ref{mbshtve}.
 
-The semi-parametric estimators $\hat{\beta}, \hat{\zeta}_i = (\hat{\zeta}_{i1}, \ldots, \hat{\zeta}_{iT})^{\top}$, and $\tilde{v}_i=(\tilde{v}_{i1},\dots,\tilde{v}_{iT})^\top$ can be obtained by minimizing $S(\beta, \zeta)$ over all $\beta\in\mathbb{R}^p$ and $\zeta\in\mathbb{R}^{T\times n}$.
+The semi-parametric estimators $\hat{\beta}, \hat{\zeta}_i = (\hat{\zeta}_{i1}, \ldots, \hat{\zeta}_{iT})^{\top}$, and $\tilde{v}_i=(\tilde{v}_{i1},\dots,\tilde{v}_{iT})^\top$ can be obtained by minimizing $S(\beta, \zeta)$ over all $\beta\in\mathbb{R}^P$ and $\zeta\in\mathbb{R}^{T\times n}$.
 
 The solutions are given by
 	\begin{eqnarray} \label{betaKSS1}
-	\hat{\beta} &=& \left(\sum^N_{i = 1} X^{\top}_{i}(I-\mathcal{Z}_{\kappa})X_{i}\right)^{-1} \left(\sum^N_{i = 1}X_i^{\top}(I-\mathcal{Z}_{\kappa})Y_{i} \right),\\
+	\hat{\beta} &=& \left(\sum^n_{i = 1} X^{\top}_{i}(I-\mathcal{Z}_{\kappa})X_{i}\right)^{-1} \left(\sum^n_{i = 1}X_i^{\top}(I-\mathcal{Z}_{\kappa})Y_{i} \right),\\
 	\hat{\zeta}_i &=& (Z^\top Z+\kappa R)^{-1}Z^\top(Y_i-X_i\hat{\beta}),\textrm{ and}\\
 	\tilde{v}_i&=&\mathcal{Z}_{\kappa}\left(Y_i-X_i\hat{\beta} \right),\textrm{ where } \mathcal{Z}_{\kappa} = Z\left(Z^\top Z+\kappa R\right)^{-1}Z^\top.
 	\end{eqnarray}
@@ -233,12 +233,12 @@ The estimator of the common factor $f_l(t)$ is then defined by the $l$th scaled 
 \begin{equation}\label{fKSS1}
   \hat{f}_l(t) = \sqrt{T} \hat{\gamma}_{lt} \; \textrm{ for all } l\in\{1, \ldots,d\},
 \end{equation}	
-where $\hat{\gamma}_{lt}$ is the $t$th element of the eigenvector $\hat{\gamma}_{l}$. The scaling factor $\sqrt{T}$ yields that $\hat{f}_{l}(t)$ satisfies the normalization condition $\frac{1}{T}\sum_{t=1}^T\hat{f}_{l}(t)^2=1$ as listed above in Section~\ref{intro}. The estimates of the individual loadings parameters $\lambda_{il}$ are obtained by ordinary least squares regressions of $\left(Y_{i} - X_{i}\hat{\beta}\right)$ on $\hat{f}_{l}$, where $\hat{f}_{l}=(\hat{f}_{l}(1),\dots,\hat{f}_{l}(T))^{'}$. Recall from conditions (a) and (b) that $\hat{\lambda}_{il}$ can be calculated as follows:
+where $\hat{\gamma}_{lt}$ is the $t$th element of the eigenvector $\hat{\gamma}_{l}$. The scaling factor $\sqrt{T}$ yields that $\hat{f}_{l}(t)$ satisfies the normalization condition $\frac{1}{T}\sum_{t=1}^T\hat{f}_{l}(t)^2=1$ as listed above in Section~\ref{intro}. The estimates of the individual loadings parameters $\lambda_{il}$ are obtained by ordinary least squares regressions of $\left(Y_{i} - X_{i}\hat{\beta}\right)$ on $\hat{f}_{l}$, where $\hat{f}_{l}=(\hat{f}_{l}(1),\dots,\hat{f}_{l}(T))^{\top}$. Recall from conditions (a) and (b) that $\hat{\lambda}_{il}$ can be calculated as follows:
 \begin{equation}\label{lambdaKSS1}
 \hat{\lambda}_{il} = \frac{1}{T} \hat{f}_{l}^{\top}\left(Y_{i} - X_{i}\hat{\beta}\right).
 \end{equation}
 
-A crucial part of the estimation procedure of \Citet{Kneip2009} is the re-estimation of the time-varying individual effects $v_i(t)$ in \textbf{Step 2} by $\hat{v}_i(t):=\sum_{l=1}^d\hat\lambda_l\hat{f}_l(t)$, where the factor dimension $d$ can be determined, e.g., by the sequential testing procedure of \Citet{Kneip2009} or by any other dimensionality criterion; see also Section~\ref{OptDim}. This re-estimation leads to more efficiently estimated time-varying individual effects. 
+A crucial part of the estimation procedure of \Citet{Kneip2009} is the re-estimation of the time-varying individual effects $v_i(t)$ in \textbf{Step 2} by $\hat{v}_i(t):=\sum_{l=1}^d\hat\lambda_{il}\hat{f}_l(t)$, where the factor dimension $d$ can be determined, e.g., by the sequential testing procedure of \Citet{Kneip2009} or by any other dimensionality criterion; see also Section~\ref{OptDim}. This re-estimation leads to more efficiently estimated time-varying individual effects. 
 
 \Citet{Kneip2009} derive the consistency of the estimators as $n,T\rightarrow\infty$ and show that the asymptotic distribution of common slope estimators is given by $\hat\Sigma_{\beta}^{-1/2}(\hat\beta-\textrm{E}_\epsilon(\hat\beta))\overset{d}{\rightarrow}\mathbf{N}(0,I)$,
 where
@@ -264,12 +264,12 @@ In order to get a quick and effective solution, we propose to determine the smoo
 \item For given $\kappa$ and ${\beta}$, we optimize~\eqref{kssmin2} with  respect to ${\zeta}_i$ to get
   \begin{equation}
     \label{zetal}
-    \hat{\zeta}_i = (Z'Z+\kappa R)^{-1}Z^\top(Y_i-X_i{\beta}).
+    \hat{\zeta}_i = (Z^{\top}Z+\kappa R)^{-1}Z^\top(Y_i-X_i{\beta}).
   \end{equation}
 \item By using~\eqref{zetal}, we minimize~\eqref{kssmin2} with respect to $\beta$ to get
   \begin{equation}
     \label{betal}
-    \hat{\beta} = \left(\sum^N_{i = 1} X^{\top}_{i}X_{i}\right)^{-1} \left(\sum^N_{i = 1}X_i^\top( Y_{i} - Z\hat{\zeta}_i)\right)
+    \hat{\beta} = \left(\sum^n_{i = 1} X^{\top}_{i}X_{i}\right)^{-1} \left(\sum^n_{i = 1}X_i^\top( Y_{i} - Z\hat{\zeta}_i)\right)
   \end{equation}
 \item Once~\eqref{zetal} and~\eqref{betal} are obtained, we optimize the following GCV criterion to calculate $\kappa_{GCV}$: 
   \begin{equation}
@@ -363,7 +363,7 @@ By setting the logical argument \code{consult.dim.crit=TRUE}, the  user can choo
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 In order to estimate the factor dimension $d$, \Citet{Kneip2009} propose a sequential testing procedure based on the following test statistic:
 \begin{equation}\label{KSScirt}
-  KSS(d) = \frac{n\sum_{r = d+1}^T \hat{\rho}_r - (n-1) \hat{\sigma}^2 tr( \mathcal{Z}_{\kappa} \hat{\mathcal{P}_d}  \mathcal{Z}_{\kappa})}{\hat{\sigma}^2 \sqrt{2N \cdot tr(( \mathcal{Z}_{\kappa} \hat{\mathcal{P}_d}  \mathcal{Z}_{\kappa})^2)}} \stackrel{a}{\sim} N(0,1),
+  KSS(d) = \frac{n\sum_{r = d+1}^T \hat{\rho}_r - (n-1) \hat{\sigma}^2 tr( \mathcal{Z}_{\kappa} \hat{\mathcal{P}_d}  \mathcal{Z}_{\kappa})}{\hat{\sigma}^2 \sqrt{2n \cdot tr(( \mathcal{Z}_{\kappa} \hat{\mathcal{P}_d}  \mathcal{Z}_{\kappa})^2)}} \stackrel{a}{\sim} N(0,1),
 \end{equation}
 where $\hat{\mathcal{P}_d} = I - \frac{1}{T}\sum_{l = 1}^d f_lf_l^{\top}$ with $f_l = (f_{l}(1), \ldots, f_{l}(T))^{\top}$, and 
 \begin{equation}\label{sig2hkss}
@@ -577,7 +577,7 @@ A feasible estimator of \eqref{betabai} can be obtained by using an arbitrary la
 \subsection{Model with unknown number of factors $d$}\label{Eup2}
 In order to estimate $d$ jointly with $\beta, F$, and $ \Lambda_i$, \Citet{Bada2010} propose to integrate a penalty term into the objective function to be globally optimized.  In this case, the optimization criterion can be defined as a penalized least squares objective function of the form:
 \begin{equation}
-  S(\beta, F, \Lambda_i, l) = \sum^N_i{||Y_i - X_i\beta - F \Lambda_i^{\top}||^2} + l g_{nT}
+  S(\beta, F, \Lambda_i, l) = \sum^n_i{||Y_i - X_i\beta - F \Lambda_i^{\top}||^2} + l g_{nT}
   \label{ofp}
 \end{equation}
 The role of the additional term $lg_{nT}$ is to pick up the dimension $\hat{d}$, of the unobserved factor structure. The penalty $g_{nT}$ can be chosen according to \Citet{Bai2002}. The estimation algorithm is based on the parameter cascading strategy of \Citet{Cao2010}, which in this case can be described as follows:
@@ -597,17 +597,17 @@ The role of the additional term $lg_{nT}$ is to pick up the dimension $\hat{d}$,
 		where $\hat{\gamma}(\beta, d)$ is a $T \times d$ matrix that contains the first $d$ eigenvectors corresponding to the first $d$ eigenvalues $\rho_1, \ldots, \rho_d$ of the covariance matrix $\hat{\Sigma} = (nT)^{-1}\sum_{i=1}^n w_iw_i^{\top}$ with $w_i = Y_i - X_i \beta$.
 \item Reintegrating (\ref{theta}) and (\ref{lambda}) in (\ref{ofp}) and minimizing with respect to $\beta$ for each given $d$, we get
 		\begin{equation}
-		\hat{\beta}(d) = \left(\sum^{N}_{i=1}X^\top_{i}X_{i}\right)^{-1} \left(\sum^{N}_{i=1}X^\top_{i}\left(Y_i -\hat{F}\hat{\Lambda}^{\top}_i(\hat{\beta}, d) \right)\right).
+		\hat{\beta}(d) = \left(\sum^{n}_{i=1}X^\top_{i}X_{i}\right)^{-1} \left(\sum^{n}_{i=1}X^\top_{i}\left(Y_i -\hat{F}\hat{\Lambda}^{\top}_i(\hat{\beta}, d) \right)\right).
 		\label{cup-beta}
 		\end{equation} 
 \item Optimizing~\eqref{ofp} with respect to $l$ given the results in~\eqref{lambda},~\eqref{theta}, and~\eqref{cup-beta} allows us to select $\hat{d}$ as
 		\begin{equation*}
-		\hat{d} = \text{argmin}_{l} \sum^N_i ||Y_i - X_i\hat{\beta} - \hat{F} \hat{\Lambda}_i^{\top}||^2 + l g_{nT}, \quad \textrm{ for all } l \in \{ 0,1, \ldots , d_{max}\}.
+		\hat{d} = \text{argmin}_{l} \sum^n_i ||Y_i - X_i\hat{\beta} - \hat{F} \hat{\Lambda}_i^{\top}||^2 + l g_{nT}, \quad \textrm{ for all } l \in \{ 0,1, \ldots , d_{max}\}.
  		%\label{dopt}
  		\end{equation*}
 \end{enumerate}		
 
-The final estimators are obtained by alternating between an inner iteration to optimize $\hat{\beta}(d), \hat{F}(d)$, and $\hat{\Lambda}_i(d)$ for each given $d$ and an outer iteration to select the dimension $\hat{d}$. The updating process is repeated in its entirety till the convergence of all the parameters. This is why the estimators are called \textsl{entirely updated estimators} (Eup). In order to avoid over-estimation, \Citet{Bada2010}  propose to re-scale $g_{nT}$ in each iteration stage with $\hat \sigma^2 = \sum^N_i ||Y_i - X_i\hat{\beta} - \hat{F} \hat{\Lambda}_i^{\top}||^2$ in stead of $\hat \sigma^2 (d_{max})$. Simulations show that such a calibration can improve the finite sample properties of the estimation method.
+The final estimators are obtained by alternating between an inner iteration to optimize $\hat{\beta}(d), \hat{F}(d)$, and $\hat{\Lambda}_i(d)$ for each given $d$ and an outer iteration to select the dimension $\hat{d}$. The updating process is repeated in its entirety till the convergence of all the parameters. This is why the estimators are called \textsl{entirely updated estimators} (Eup). In order to avoid over-estimation, \Citet{Bada2010}  propose to re-scale $g_{nT}$ in each iteration stage with $\hat \sigma^2 = \sum^n_i ||Y_i - X_i\hat{\beta} - \hat{F} \hat{\Lambda}_i^{\top}||^2$ in stead of $\hat \sigma^2 (d_{max})$. Simulations show that such a calibration can improve the finite sample properties of the estimation method.
  		
 It is notable that the objective functions (\ref{ofp}) and (\ref{of}) are not globally convex. There is no guarantee that the iteration algorithm  converges to the global optimum. Therefore, it is important to choose reasonable starting values $\hat{d}_{start}$ and $\hat\beta_{start}$. We propose to select a large dimension $d_{max}$ and to start the iteration with the following estimate of $\beta$: 
 \begin{equation}\label{betastart}
@@ -639,13 +639,20 @@ In presence of correlation and heteroskedasticity in panels with proportional di
 \hat \beta^*(d) = \hat \beta(d) - \frac{1}{n}\hat B - \frac{1}{T}\hat C
 \end{equation}
 where $\hat B$ and $\hat C$ are the estimators of
+%% $$
+%% \begin{array}{lcl}
+%% B &=& - \left(\frac{1}{nT} \sum_{i=1}^n \sum_{t=1}^T  Z_{it}^{\top} Z_{it}\right)^{-1} \frac{1}{n} \sum_{i=1}^n \sum_{k=1}^n(X_i - V_i)^{\top}F \left( F^{\top} F\right)^{-1} \\
+%% C &=&  - \left(\frac{1}{nT} \sum_{i=1}^n \sum_{t=1}^T  Z_{it}^{\top} Z_{it}\right)^{-1} \frac{1}{n} \sum_{i=1}^n X_i^{\top} M_{F}\Omega F \left( F^{\top} F\right)^{-1} \left(\sum_{k=1}^n \Lambda_k^{\top} \Lambda_k \right)^{-1}\Lambda_i^{\top}
+%% \end{array}
+%% $$ 
+%% respectively. Here, $V_i = \frac{1}{n} \sum_{j=1}^{n} a_{ij}X_{j}$,  $\Omega = \frac{1}{n}\sum_{k=1}^{n} \Omega_k$ and
 $$
 \begin{array}{lcl}
-B &=& - \left(\frac{1}{nT} \sum_{i=1}^n \sum_{t=1}^T  Z_{it}^{\top} Z_{it}\right)^{-1} \frac{1}{n} \sum_{i=1}^n \sum_{k=1}^n(X_i - V_i)^{\top}F \left( F^{\top} F\right)^{-1} \\
-C &=&  - \left(\frac{1}{nT} \sum_{i=1}^n \sum_{t=1}^T  Z_{it}^{\top} Z_{it}\right)^{-1} \frac{1}{n} \sum_{i=1}^n X_i^{\top} M_{F}\Omega F \left( F^{\top} F\right)^{-1} \left(\sum_{k=1}^n \Lambda_k^{\top} \Lambda_k \right)^{-1}\Lambda_i^{\top}
+B &=& - \left(\frac{1}{nT} \sum_{i=1}^n \sum_{t=1}^T Z_{it}^{\top} Z_{it}\right)^{-1} \frac{1}{nT} \sum_{i=1}^n \sum_{k=1}^n(X_i - V_i)^{\top}F \left(\frac{1}{T} F^{\top}F\right)^{-1}W_{ik}  \\
+C &=&  - \left(\frac{1}{nT} \sum_{i=1}^n \sum_{t=1}^T Z_{it}^{\top} Z_{it}\right)^{-1} \frac{1}{nT} \sum_{i=1}^n X_i^{\top} M_{F}\Omega F \left(\frac{1}{T} F^{\top} F\right)^{-1} \left(\frac{1}{n}\sum_{k=1}^n \Lambda_k^{\top} \Lambda_k \right)^{-1}\Lambda_i^{\top}
 \end{array}
-$$ 
-respectively. Here, $V_i = \frac{1}{n} \sum_{j=1}^{n} a_{ij}X_{j}$,  $\Omega = \frac{1}{n}\sum_{k=1}^{n} \Omega_k$ and
+$$
+respectively. Here, $V_i = \frac{1}{n} \sum_{j=1}^{n} a_{ij}X_{j}$, $W_{ik} = \left(\frac{1}{n}\sum_{j=1}^n \Lambda_j^{\top} \Lambda_j \right)^{-1}\Lambda_k^{\top} \frac{1}{T} \sum_{t = 1}^T E(\epsilon_{it} \epsilon_{kt})$, and $\Omega = \frac{1}{n}\sum_{k=1}^{n} \Omega_k$ with
 \begin{enumerate}
 \item[Case 7.] $\Omega_k$ is a $T \times T$ diagonal matrix with elements $\omega_{kt} = E(\epsilon_{kt}^2)$ if heteroskedasticity in both time and cross-section dimensions exist and $n/T \to c > 0$ and,
 \item[Case 8.] $\Omega_k$ is a $T \times T$ matrix with elements $\Omega_{k,ts} = E(\epsilon_{kt} \epsilon_{ks})$ if correlation and heteroskedasticity in both time and cross-section dimensions exist and  $n/T \to c > 0$. 
@@ -685,10 +692,10 @@ The argument \code{start.beta} allows us to give a vector of starting values for
 
 In our application, we take first-order differences of the observed time series. This is because some factors show temporal trends, which can violate the stationarity condition~\eqref{stasiocond}; see Figure~\ref{KSSM1_Fig}. We consider the following modified cigarettes model: %To test the unit root hypothesis of the unobserved common factors, we refer to the  Panel Analysis of Non-stationarity in Idiosyncratic and Common components (PANIC) proposed by \Citet{Bai2004b}. 
 \begin{eqnarray*}%\label{EupM1}
-\triangledown \ln(\texttt{Consumption}_{it})&=&\beta_1 \triangledown  \ln(\texttt{Price}_{it})+ \beta_2 \triangledown \ln(\texttt{Income}_{it}) +  e_{it},\\
+\triangle \ln(\texttt{Consumption}_{it})&=&\beta_1 \triangle  \ln(\texttt{Price}_{it})+ \beta_2 \triangle \ln(\texttt{Income}_{it}) +  e_{it},\\
 \textrm{with}\quad e_{it} &=&\sum_{l=1}^d\lambda_{il}f_{lt}+ \epsilon_{it}\notag,
 \end{eqnarray*}
-where $\triangledown x_t = x_t - x_{t-1}$. In order to avoid notational mess, we use the same notation for the unobserved time-varying individual effects $v_{it}= \sum_{l=1}^d\lambda_{il}f_{lt}$ as above in~\eqref{KSSM1}. The $\triangledown$-transformation can be easily performed in \proglang{R} using the standard \code{diff()}-function as follows:
+where $\triangle x_t = x_t - x_{t-1}$. In order to avoid notational mess, we use the same notation for the unobserved time-varying individual effects $v_{it}= \sum_{l=1}^d\lambda_{il}f_{lt}$ as above in~\eqref{KSSM1}. The $\triangle$-transformation can be easily performed in \proglang{R} using the standard \code{diff()}-function as follows:
 <<>>=
 d.l.Consumption  <- diff(l.Consumption)
 d.l.Price        <- diff(l.Price)
@@ -859,7 +866,7 @@ The \code{"individual"}-transformation of the data does not affect the estimatio
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Specification tests}\label{ADDvsINT}
-Model specification is an important step for any empirical analysis. The \pkg{phtt} package is equipped with two types of specification tests: the first is a Hausman-type test appropriate for the model of \Citet{Bai2009a}; see Section~\ref{tavie}. The second one examines the existence of a factor structure in Bai's model as well as in the model of \Citet{Kneip2009}; see Section~\ref{teie}. 
+Model specification is an important step for any empirical analysis. The \pkg{phtt} package is equipped with two types of specification tests: the first is a Hausman-type test appropriate for the model of \Citet{Bai2009a}. The second one examines the existence of a factor structure in Bai's model as well as in the model of \Citet{Kneip2009}. 
 
 \subsubsection{Testing the sufficiency of classical additive effects}\label{tavie}
 For the case in which the estimated number of factors amounts to one or two ($1\leq \hat d \leq 2$), it is interesting to check whether or not these factors can be interpreted as classical \code{"individual"}, \code{"time"}, or \code{"twoways"} effects. \Citet{Bai2009a} considers the following testing problem: 
@@ -878,8 +885,11 @@ where $\hat{\beta}_{within}$ is the classical within least squares estimator, $ 
 The null hypothesis $H_0$ can be rejected, if $J_{Bai} > \chi^2_{P, 1-\alpha}$, where $\chi^2_{P, 1-\alpha}$ is the $(1-\alpha)$-quantile of the $\chi^2$ distribution with $P$ degrees of freedom.
 
 Under i.i.d.~errors, $J_{Bai}$ can be calculated by replacing $ \Delta $ with its consistent estimator 
+%% \begin{equation}\label{DelatEstim}
+%%   \hat{\Delta} = \left(\left(\frac{1}{nT}\sum_{i=1}^n Z_i^{\top} Z_i\right)^{-1}  - \left(\frac{1}{nT}\sum_{i=1}^n \sum_{t=1}^T \dot{x}^{\top}_i \dot{x}_i\right)^{-1}\right)\hat{\sigma}^2,
+%% \end{equation}
 \begin{equation}\label{DelatEstim}
-\hat{\Delta} = \left(\left(\frac{1}{nT}\sum_{i=1}^n Z_i^{\top} Z_i\right)^{-1}  -  \left(\frac{1}{nT}\sum_{i=1}^n \sum_{t=1}^T \dot{x}^{\top}_i \dot{x}_i\right)^{-1}\right)\hat{\sigma}^2,
+  \hat{\Delta} = \left(\left(\frac{1}{nT}\sum_{i=1}^n Z_i^{\top} Z_i\right)^{-1}  -  \left(\frac{1}{nT}\sum_{i=1}^n \sum_{t=1}^T \dot{x}_{it} \dot{x}_{it}^{\top}\right)^{-1}\right)\hat{\sigma}^2,
 \end{equation}
 where
 \begin{equation}\label{sig2s6}
@@ -1073,6 +1083,8 @@ can be interpreted as it is usually done in the literature on factor models. An 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 This paper introduces the \proglang{R} package \pkg{phtt} for the new class of panel models proposed by \Citet{Bai2009a} and \Citet{Kneip2009}. The two main functions of the package are the \code{Eup()}-function for the estimation procedure proposed in \Citet{Bai2009a} and the \code{KSS()}-function for the estimation procedure proposed in \Citet{Kneip2009}. Both of the main functions are supported by the usual \code{print()}-, \code{summary()}-, \code{plot()}-, \code{coef()}- and \code{residuals()}-methods. While parts of the method of \Citet{Bai2009a} are available for commercially available software packages, the estimation procedure proposed by \Citet{Kneip2009} is not available elsewhere. A further remarkable feature of our \pkg{phtt} package is the \code{OptDim()}-function, which provides an ease access to many different dimensionality criteria proposed in the literature on factor models. The usage of the functions is demonstrated by a real data application. 
 
+\section{Acknowledgment}
+The authors wish to thank the referees for their many helpful comments and suggestions that greatly improved the paper. The work of Dominik Liebl was supported from the IAP Research NetworkP7/06 of the Belgian State (Belgian Science Policy). 
 \newpage
-\bibliography{phtt_Guide}
+\bibliography{phtt}
 \end{document}

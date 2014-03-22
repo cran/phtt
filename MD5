@@ -1,4 +1,4 @@
-c8dc5a578f3c997305eba2ed4a38e03f *DESCRIPTION
+2e4bc5446049c790e7a3227804d3e24c *DESCRIPTION
 57674e8363b4f3fd6177975043d94d26 *NAMESPACE
 260209db4d6f665f5c97347bd3737eb3 *R/AFactMod.R
 68f75aea8198d9a55a0ee695fd4f5e3f *R/Eup.R
@@ -12,17 +12,17 @@ a8050636f3b4e12361e8c8bf619f5767 *R/FUN.with.trans.R
 e686ed8962535968c5f69a4f24277724 *R/KSS.R
 54923a127675b968eca010982c2d5429 *R/KSS.methods.R
 a157249874b4b150eae8a67d4e9371aa *R/OptDim.R
-a78a8edbef6368aa34a012d6d347f5a0 *R/checkSpecification.R
+2aaeea23eae8bc5a417ed11615e6a246 *R/checkSpecification.R
 42dd1b2712e9a55c7f304de1dcf1006e *R/fpca.fit.R
 c72d47e3918a323b81f8cb9df7fce982 *R/pca.fit.R
-24508b0e32c4c39d2221e1612aa81e7d *build/vignette.rds
+929e7bb9549541297f1a60f7b0187a4e *build/vignette.rds
 64a0b1f81e7e59d72fe3d95cc39421b8 *data/Cigar.rda
 ebcd6c02148f93c2109e78b6d1f05503 *data/DGP1.rda
 47be5565c793425558292e4ba4bde7df *data/DGP2.rda
-2275637641515648ba2fdcc28be343f4 *inst/CITATION
-78315db8dd907df7624543a1de28e364 *inst/doc/phtt_Guide.R
-bee9bbf18bcdefaf0052bde196df4bc5 *inst/doc/phtt_Guide.Snw
-77b131d8870d0f72b545afe15adfd496 *inst/doc/phtt_Guide.pdf
+a1bea128fb33d9167679190d6ab077ca *inst/CITATION
+13f6beaab51a37f62cedf65fb16f1f87 *inst/doc/phtt.R
+f55f667730c5443fe4bc465b3ab93053 *inst/doc/phtt.Snw
+e81fe4fb940719bd9e8e6e4af91a8e42 *inst/doc/phtt.pdf
 2f2ed90d6f253e56d4c99c700bbd350d *man/Cigar.Rd
 2008189d5b7a8e4e7950a7b9642828c3 *man/Eup.Rd
 40b69ea65c811d37eda4012530a043e4 *man/KSS.Rd
@@ -31,5 +31,5 @@ c718044f5a54419d581d434dcbcd0e24 *man/Simulated_KSS_Data_DGP1.Rd
 69147049dfde22de3c67b409b5681146 *man/Simulated_KSS_Data_DGP2.Rd
 3323c9e768a78980af3f295ba9b35b88 *man/checkSpecif.Rd
 c30f03fd255f2c426219cdc260da36f6 *man/panel_htt-package.Rd
-bee9bbf18bcdefaf0052bde196df4bc5 *vignettes/phtt_Guide.Snw
-63532bf90c2a7e82bd790c9ae17c3b39 *vignettes/phtt_Guide.bib
+f55f667730c5443fe4bc465b3ab93053 *vignettes/phtt.Snw
+51d768c431daa7533568e4e6eb130624 *vignettes/phtt.bib

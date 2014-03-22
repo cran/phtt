@@ -54,10 +54,10 @@ checkSpecif <- function(obj1, obj2, level = 0.05){
       if(d1>2) stop("The used factor dimension in the model under the alternative hypothesis is larger than 2.")
     }
     beta.add <- add.Obj$slope.para
-    C <- Eup.inference(add.Obj)$inv.ZZ
+    C <- Eup.inference(add.Obj, error.type = 1, kernel.weights = NULL)$inv.ZZ
 	
     beta.int <- int.Obj$slope.para
-    infbetaint <- Eup.inference(int.Obj)
+    infbetaint <- Eup.inference(int.Obj, error.type = 1, kernel.weights = NULL)
     D <- infbetaint$inv.ZZ
     sig2.hat <- infbetaint$sig2.hat
     DmC <- D-C

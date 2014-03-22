@@ -1,14 +1,12 @@
-### R code from vignette source 'phtt_Guide.Snw'
+### R code from vignette source 'phtt.Snw'
 
 ###################################################
-### code chunk number 1: phtt_Guide.Snw:147-176
+### code chunk number 1: phtt.Snw:149-176
 ###################################################
 ## Install package
-## install.packages("phtt", repos="http://R-Forge.R-project.org")
+## install.packages("phtt")
 ## Load package
 library("phtt")
-## vignette()
-## vignette("phtt_Guide")
 ## Load Data
 data("Cigar")
 N <- 46
@@ -35,13 +33,13 @@ graphics.off()
 
 
 ###################################################
-### code chunk number 2: phtt_Guide.Snw:291-292
+### code chunk number 2: phtt.Snw:291-292
 ###################################################
 args(KSS)
 
 
 ###################################################
-### code chunk number 3: phtt_Guide.Snw:316-324
+### code chunk number 3: phtt.Snw:316-324
 ###################################################
 library("phtt")
 data("Cigar")
@@ -54,14 +52,14 @@ l.Income        <- log(matrix(Cigar$ndi,   T, N)/cpi)
 
 
 ###################################################
-### code chunk number 4: phtt_Guide.Snw:329-331
+### code chunk number 4: phtt.Snw:329-331
 ###################################################
 Cigar.KSS <- KSS(formula = l.Consumption ~ l.Price + l.Income) 
 (Cigar.KSS.summary <- summary(Cigar.KSS))
 
 
 ###################################################
-### code chunk number 5: phtt_Guide.Snw:335-340
+### code chunk number 5: phtt.Snw:335-340
 ###################################################
 ## Figure 2:
 pdf("KSSM1.pdf")
@@ -71,32 +69,32 @@ graphics.off()
 
 
 ###################################################
-### code chunk number 6: phtt_Guide.Snw:344-345 (eval = FALSE)
+### code chunk number 6: phtt.Snw:344-345 (eval = FALSE)
 ###################################################
 ## plot(Cigar.KSS.summary)
 
 
 ###################################################
-### code chunk number 7: phtt_Guide.Snw:437-438
+### code chunk number 7: phtt.Snw:437-438
 ###################################################
 args(OptDim)
 
 
 ###################################################
-### code chunk number 8: phtt_Guide.Snw:448-449
+### code chunk number 8: phtt.Snw:448-449
 ###################################################
 OptDim(Obj = l.Consumption, criteria = "PC1")
 
 
 ###################################################
-### code chunk number 9: phtt_Guide.Snw:454-456
+### code chunk number 9: phtt.Snw:454-456
 ###################################################
 (OptDim.obj <- OptDim(Obj = l.Consumption, criteria = c("PC3",  "ER",  
                       "GR", "IPC1", "IPC2", "IPC3"), standardize = TRUE))
 
 
 ###################################################
-### code chunk number 10: phtt_Guide.Snw:461-464
+### code chunk number 10: phtt.Snw:461-464
 ###################################################
 pdf("OptDimv.pdf")
 plot(OptDim.obj)
@@ -104,25 +102,25 @@ graphics.off()
 
 
 ###################################################
-### code chunk number 11: phtt_Guide.Snw:468-469 (eval = FALSE)
+### code chunk number 11: phtt.Snw:468-469 (eval = FALSE)
 ###################################################
 ## plot(OptDim.obj) 
 
 
 ###################################################
-### code chunk number 12: phtt_Guide.Snw:485-486 (eval = FALSE)
+### code chunk number 12: phtt.Snw:485-486 (eval = FALSE)
 ###################################################
 ## KSS(formula = l.Consumption ~ -1 + l.Price + l.Income, consult.dim = TRUE) 
 
 
 ###################################################
-### code chunk number 13: phtt_Guide.Snw:676-677
+### code chunk number 13: phtt.Snw:683-684
 ###################################################
 args(Eup)
 
 
 ###################################################
-### code chunk number 14: phtt_Guide.Snw:692-695
+### code chunk number 14: phtt.Snw:699-702
 ###################################################
 d.l.Consumption  <- diff(l.Consumption)
 d.l.Price        <- diff(l.Price)
@@ -130,20 +128,20 @@ d.l.Income       <- diff(l.Income)
 
 
 ###################################################
-### code chunk number 15: phtt_Guide.Snw:699-701
+### code chunk number 15: phtt.Snw:706-708
 ###################################################
 (Cigar.Eup <- Eup(d.l.Consumption ~  -1 + d.l.Price + d.l.Income, 
                   dim.criterion = "PC3"))
 
 
 ###################################################
-### code chunk number 16: phtt_Guide.Snw:717-718
+### code chunk number 16: phtt.Snw:724-725
 ###################################################
 summary(Cigar.Eup)
 
 
 ###################################################
-### code chunk number 17: phtt_Guide.Snw:724-727
+### code chunk number 17: phtt.Snw:731-734
 ###################################################
 pdf("EupPlot.pdf")
 plot(summary(Cigar.Eup))
@@ -151,13 +149,13 @@ graphics.off()
 
 
 ###################################################
-### code chunk number 18: phtt_Guide.Snw:731-732 (eval = FALSE)
+### code chunk number 18: phtt.Snw:738-739 (eval = FALSE)
 ###################################################
 ## plot(summary(Cigar.Eup))
 
 
 ###################################################
-### code chunk number 19: phtt_Guide.Snw:797-800
+### code chunk number 19: phtt.Snw:804-807
 ###################################################
 Cigar2.KSS <- KSS(formula = l.Consumption ~ l.Price + l.Income,
                   additive.effects = "individual") 
@@ -165,7 +163,7 @@ Cigar2.KSS.summary <- summary(Cigar2.KSS)
 
 
 ###################################################
-### code chunk number 20: phtt_Guide.Snw:803-806 (eval = FALSE)
+### code chunk number 20: phtt.Snw:810-813 (eval = FALSE)
 ###################################################
 ## Cigar2.KSS <- KSS(formula = l.Consumption ~ l.Price + l.Income,
 ##                   additive.effects = "individual") 
@@ -173,13 +171,13 @@ Cigar2.KSS.summary <- summary(Cigar2.KSS)
 
 
 ###################################################
-### code chunk number 21: phtt_Guide.Snw:838-839 (eval = FALSE)
+### code chunk number 21: phtt.Snw:845-846 (eval = FALSE)
 ###################################################
 ## plot(Cigar2.KSS.summary)
 
 
 ###################################################
-### code chunk number 22: phtt_Guide.Snw:842-848
+### code chunk number 22: phtt.Snw:849-855
 ###################################################
 pdf("KSSM2.pdf")
 scl <- 1.75
@@ -190,13 +188,13 @@ graphics.off()
 
 
 ###################################################
-### code chunk number 23: phtt_Guide.Snw:892-893 (eval = FALSE)
+### code chunk number 23: phtt.Snw:902-903 (eval = FALSE)
 ###################################################
 ## checkSpecif(obj1, obj2, level = 0.05)
 
 
 ###################################################
-### code chunk number 24: phtt_Guide.Snw:907-912 (eval = FALSE)
+### code chunk number 24: phtt.Snw:917-922 (eval = FALSE)
 ###################################################
 ## twoways.obj     <- Eup(d.l.Consumption ~  -1 + d.l.Price + d.l.Income, 
 ##                        factor.dim = 0, additive.effects = "twoways")
@@ -206,7 +204,7 @@ graphics.off()
 
 
 ###################################################
-### code chunk number 25: phtt_Guide.Snw:953-956
+### code chunk number 25: phtt.Snw:963-966
 ###################################################
 Eup.obj <- Eup(d.l.Consumption ~  -1 + d.l.Price + d.l.Income, 
                additive.effects = "twoways")
@@ -214,7 +212,7 @@ checkSpecif(Eup.obj, level = 0.01)
 
 
 ###################################################
-### code chunk number 26: phtt_Guide.Snw:960-963
+### code chunk number 26: phtt.Snw:970-973
 ###################################################
 KSS.obj <- KSS(l.Consumption ~  -1 + l.Price + l.Income, 
                additive.effects = "twoways")
@@ -222,7 +220,7 @@ checkSpecif(KSS.obj, level = 0.01)
 
 
 ###################################################
-### code chunk number 27: phtt_Guide.Snw:1010-1021 (eval = FALSE)
+### code chunk number 27: phtt.Snw:1020-1031 (eval = FALSE)
 ###################################################
 ## coef(Cigar2.KSS)$Var.shares.of.loadings.param[1]
 ## coef(Cigar2.KSS)$Var.shares.of.loadings.param[2]
@@ -238,7 +236,7 @@ checkSpecif(KSS.obj, level = 0.01)
 
 
 ###################################################
-### code chunk number 28: phtt_Guide.Snw:1024-1031
+### code chunk number 28: phtt.Snw:1034-1041
 ###################################################
 pdf("Factor2.pdf")
 scl <- 1
